@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../styles/Nav.css';
 
 class Nav extends Component {
@@ -16,7 +17,7 @@ class Nav extends Component {
   }
 
   handleChange(event) {
-    this.setState({zipcode: event.target.value});
+    this.setState({ zipcode: event.target.value });
   }
 
   handleSubmit(event) {
@@ -35,6 +36,7 @@ class Nav extends Component {
   componentDidMount() {
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = (event) => {
+      console.log(event.target)
         if (event.target.className === "middle") {
           this.setState({ showModal:  {display: "none"} });
         }
@@ -68,7 +70,7 @@ class Nav extends Component {
             </form>
           </div>
         </div>
-      </div>
+        </div>
       </div>
       </div>
       </div>
