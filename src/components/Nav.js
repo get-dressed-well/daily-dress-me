@@ -19,11 +19,6 @@ const images = [
   { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
   { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
 ];
-console.log(images);
-const imageIndex = images.findIndex(image => image.name === weatherDescription);
-if (imageIndex !== -1) {
-  let fileLocation = images.splice(imageIndex.fileLocation, 1); //file location for background
-}
 
 class Nav extends Component {
   constructor(props) {
@@ -33,7 +28,7 @@ class Nav extends Component {
       zipcode: '90210',
       weatherDescription: '',
       clothes: [],
-      weatherBackgroundImg: { backgroundImage: 'url(' + Background + ')' }
+      weatherBackgroundImg: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,6 +36,45 @@ class Nav extends Component {
     this.openModel = this.openModel.bind(this);
     this.closeModel = this.closeModel.bind(this);
   }
+
+  convert = num => {
+    /**
+     * 1 sunny
+     * 2 rainy
+     * 3 snowy
+     * 4 foggy
+     * 5 extreme
+     */
+    let result = num.toString()[0];
+    switch (result) {
+      case '2':
+      case '3':
+      case '5':
+        return '2';
+      case '6':
+        return '3';
+      case '7':
+        return '4';
+      case '8':
+        return '1';
+      case '9':
+        return '5';
+      default:
+        return '1';
+    }
+    return result;
+  };
+
+  getImage = () => {
+    console.log('get image was called');
+    const imageIndex = images.findIndex(
+      image => image.name === this.state.weatherDescription
+    );
+    if (imageIndex !== -1) {
+      let image = images.splice(imageIndex.fileLocation, 1); //file location for background
+      this.setState({ weatherBackgroundImg: image[0].fileLocation });
+    }
+  };
 
   handleChange(event) {
     this.setState({ zipcode: event.target.value });
@@ -59,12 +93,15 @@ class Nav extends Component {
           this.setState({
             weatherDescription: response.data.weather[0].description
           });
+          console.log('only one thing ' + response.data.weather[0].id);
         } else {
-          response.data.weather.forEach(id => {
-            console.log(id.id);
+          this.setState({
+            weatherDescription: response.data.weather[1].description
           });
         }
+        this.getImage();
       })
+
       .catch(function(error) {
         console.log(error);
       });
