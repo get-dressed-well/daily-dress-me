@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import dictionaryObj from './dictionary';
 import '../styles/Nav.css';
 
+let body = document.getElementsByTagName('body')[0];
 
 const images = [
-  { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' }, 
+  { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' },
   { name: 'few clouds', fileLocation: './weatherPic/few-clouds.jpeg' },
-  { name: 'scattered clouds', fileLocation: './weatherPic/scattered-clouds.jpeg' },
+  {
+    name: 'scattered clouds',
+    fileLocation: './weatherPic/scattered-clouds.jpeg'
+  },
   { name: 'broken clouds', fileLocation: './weatherPic/broken-clouds.jpeg' },
   { name: 'shower rain', fileLocation: './weatherPic/shower-rain.jpeg' },
   { name: 'rain', fileLocation: './weatherPic/rain.jpeg' },
   { name: 'thunderstorm', fileLocation: './weatherPic/thunderstorm.jpeg' },
   { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
   { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
-  ]
-console.log(images)
-  const imageIndex = images(image => image.name === weatherDescription);
+];
+console.log(images);
+const imageIndex = images.findIndex(image => image.name === weatherDescription);
 if (imageIndex !== -1) {
-  let fileLocation = images.splice(imageIndex.fileLocation,1); //file location for background
+  let fileLocation = images.splice(imageIndex.fileLocation, 1); //file location for background
 }
 
 class Nav extends Component {
@@ -27,7 +32,8 @@ class Nav extends Component {
       showModal: { display: 'none' },
       zipcode: '90210',
       weatherDescription: '',
-      clothes: []
+      clothes: [],
+      weatherBackgroundImg: { backgroundImage: 'url(' + Background + ')' }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -50,7 +56,9 @@ class Nav extends Component {
       )
       .then(response => {
         if (response.data.weather.length < 2) {
-          this.setState({ weatherDescription: 'response.data.weather[0].id' });
+          this.setState({
+            weatherDescription: response.data.weather[0].description
+          });
         } else {
           response.data.weather.forEach(id => {
             console.log(id.id);
