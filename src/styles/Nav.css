@@ -19,9 +19,13 @@
 #bars-btn {
   float: right;
   font-size: 24px;
-  color: #666;
+  color: #fedf08;
+  background-color: #9b8c6b;
   margin-top: 10px;
   margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
 }
 
 /* The Modal (background) */
@@ -41,8 +45,9 @@
 /* Modal Content/Box */
 .modal-content {
   position: relative;
+  color: #fedf08;
   background-color: #fefefe;
-  padding: 20px;
+  padding: 0  0 20px 0;
   border: 1px solid #888;
   width: 300px;
   height: 320px;
@@ -54,7 +59,7 @@
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: #fedf08;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -95,4 +100,26 @@
   color: #666;
   outline: none;
   border: none;
+}
+
+.modal-form-btn {
+  display: block;
+  width: 250px;
+  height: 45px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fedf08;
+  font-size: 20px;
+  font-weight: 600;
+  color: #9b8c6b;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
