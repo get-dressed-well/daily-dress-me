@@ -26,7 +26,7 @@ class Nav extends Component {
       .get(
         `http://api.openweathermap.org/data/2.5/zip=${
           this.state.zipcode
-        }&APPID={APIKEY}`
+        }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
       .then(function(response) {
         console.log(response);
