@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import dictionaryObj from './dictionary';
+import test from '../weatherPics/clear-sky.jpeg';
 import '../styles/Nav.css';
 
 let body = document.getElementsByTagName('body')[0];
@@ -19,11 +20,11 @@ const images = [
   { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
   { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
 ];
-console.log(images);
-const imageIndex = images.findIndex(image => image.name === weatherDescription);
-if (imageIndex !== -1) {
-  let fileLocation = images.splice(imageIndex.fileLocation, 1); //file location for background
-}
+// console.log(images);
+// const imageIndex = images.findIndex(image => image.name === weatherDescription);
+// if (imageIndex !== -1) {
+//   let fileLocation = images.splice(imageIndex.fileLocation, 1); //file location for background
+// }
 
 class Nav extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Nav extends Component {
       zipcode: '90210',
       weatherDescription: '',
       clothes: [],
-      weatherBackgroundImg: { backgroundImage: 'url(' + Background + ')' }
+      weatherBackgroundImg: { backgroundImage: "url("+ test +")" }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -91,6 +92,7 @@ class Nav extends Component {
 
   render() {
     return (
+      <div className="wrapper" style={this.state.weatherBackgroundImg}>
       <div>
         <button onClick={this.openModel} id="bars-btn">
           <i className="fas fa-bars" />
@@ -132,6 +134,7 @@ class Nav extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }
