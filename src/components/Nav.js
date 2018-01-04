@@ -14,7 +14,7 @@ const images = [
   { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
   { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
   ]
-
+console.log(images)
   const imageIndex = images(image => image.name === weatherDescription);
 if (imageIndex !== -1) {
   let fileLocation = images.splice(imageIndex.fileLocation,1); //file location for background
