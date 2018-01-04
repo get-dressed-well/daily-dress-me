@@ -1,0 +1,125 @@
+.outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+#bars-btn {
+  float: right;
+  font-size: 24px;
+  color: #fedf08;
+  background-color: #9b8c6b;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  position: relative;
+  color: #fedf08;
+  background-color: #fefefe;
+  padding: 0  0 20px 0;
+  border: 1px solid #888;
+  width: 300px;
+  height: 320px;
+  background-color: #9b8c6b;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* The Close Button */
+.close {
+  color: #fedf08;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form-group {
+  width: 250px;
+  padding-top: 12px;
+  padding-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-field {
+  display: block;
+  width: 250px;
+  height: 45px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 24px;
+  margin: 15px auto;
+  padding-left: 10px;
+  background-color: #fff;
+  color: #666;
+  outline: none;
+  border: none;
+}
+
+.modal-form-btn {
+  display: block;
+  width: 250px;
+  height: 45px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fedf08;
+  font-size: 20px;
+  font-weight: 600;
+  color: #9b8c6b;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
