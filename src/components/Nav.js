@@ -24,7 +24,7 @@ class Nav extends Component {
     var modal = document.getElementById('myModal');
 
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    var btn = document.getElementById("bars-btn");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
@@ -50,8 +50,7 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        <button id="myBtn"><i className="fa fa-bars" aria-hidden="true"></i></button>
-        
+        <button id="bars-btn"><i className="fas fa-bars"></i></button>
         <div id="myModal" className="modal">
         <div className="outer">
         <div className="middle">
