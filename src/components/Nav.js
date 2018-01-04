@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../styles/Nav.css';
 
 class Nav extends Component {
   constructor(props) {
     super(props);
-    this.state = {zipcode: '90210'};
+    this.state = { zipcode: '90210', currentWeather: '', city: '' };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({zipcode: event.target.value});
+    this.setState({ zipcode: event.target.value });
   }
 
   handleSubmit(event) {
+    axios
+      .get(
+        `http://api.openweathermap.org/data/2.5/forecast?zip=${
+          this.state.zipcode
+        }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
+      )
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     alert('A name was submitted: ' + typeof this.state.zipcode);
+
     event.preventDefault();
   }
 
@@ -24,59 +38,66 @@ class Nav extends Component {
     var modal = document.getElementById('myModal');
 
     // Get the button that opens the modal
-    var btn = document.getElementById("bars-btn");
+    var btn = document.getElementById('bars-btn');
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var span = document.getElementsByClassName('close')[0];
 
-    // When the user clicks on the button, open the modal 
+    // When the user clicks on the button, open the modal
     btn.onclick = function() {
-        modal.style.display = "block";
-    }
+      modal.style.display = 'block';
+    };
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-        modal.style.display = "none";
-    }
+      modal.style.display = 'none';
+    };
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    }
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
   }
 
   render() {
     return (
       <div>
-        <button id="bars-btn"><i className="fas fa-bars"></i></button>
+        <button id="bars-btn">
+          <i className="fas fa-bars" />
+        </button>
         <div id="myModal" className="modal">
-        <div className="outer">
-        <div className="middle">
-        <div className="inner">
-          <div className="modal-content">
-            <h3>Choose location</h3>
-            <span className="close">&times;</span>
-              <form onSubmit={this.handleSubmit} >
-              <label className="form-group">
-                Zipcode:
-                <input className="form-field" type="text" value={this.state.zipcode} onChange={this.handleChange}/>
-              </label>
-              <label className="form-group">
-                Gender:
-                <select className="form-field">
-                  <option>Male</option>
-                  <option>Female</option>
-                </select>
-              </label>
-              <input className="form-field" type="submit" value="Save" />
-            </form>
+          <div className="outer">
+            <div className="middle">
+              <div className="inner">
+                <div className="modal-content">
+                  <h3>Choose location</h3>
+                  <span className="close">&times;</span>
+                  <form onSubmit={this.handleSubmit}>
+                    <label className="form-group">
+                      Zipcode:
+                      <input
+                        className="form-field"
+                        type="text"
+                        value={this.state.zipcode}
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                    <label className="form-group">
+                      Gender:
+                      <select className="form-field">
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                    </label>
+                    <input className="form-field" type="submit" value="Save" />
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
-      </div>
       </div>
     );
   }
