@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import dictionaryObj from './dictionary';
+import test from '../weatherPics/clear-sky.jpeg';
 import '../styles/Nav.css';
 
 let body = document.getElementsByTagName('body')[0];
@@ -128,42 +129,44 @@ class Nav extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.openModel} id="bars-btn">
-          <i className="fas fa-bars" />
-        </button>
-        <div id="myModal" className="modal" style={this.state.showModal}>
-          <div className="outer">
-            <div className="middle">
-              <div className="inner">
-                <div className="modal-content">
-                  <h3>Choose location</h3>
-                  <span className="close" onClick={this.closeModel}>
-                    &times;
-                  </span>
-                  <form onSubmit={this.handleSubmit}>
-                    <label className="form-group">
-                      Zipcode:
+      <div className="wrapper" style={this.state.weatherBackgroundImg}>
+        <div>
+          <button onClick={this.openModel} id="bars-btn">
+            <i className="fas fa-bars" />
+          </button>
+          <div id="myModal" className="modal" style={this.state.showModal}>
+            <div className="outer">
+              <div className="middle">
+                <div className="inner">
+                  <div className="modal-content">
+                    <h3>Choose location</h3>
+                    <span className="close" onClick={this.closeModel}>
+                      &times;
+                    </span>
+                    <form onSubmit={this.handleSubmit}>
+                      <label className="form-group">
+                        Zipcode:
+                        <input
+                          className="form-field"
+                          type="text"
+                          value={this.state.zipcode}
+                          onChange={this.handleChange}
+                        />
+                      </label>
+                      <label className="form-group">
+                        Gender:
+                        <select className="form-field">
+                          <option>Male</option>
+                          <option>Female</option>
+                        </select>
+                      </label>
                       <input
-                        className="form-field"
-                        type="text"
-                        value={this.state.zipcode}
-                        onChange={this.handleChange}
+                        className="form-field modal-form-btn"
+                        type="submit"
+                        value="Save"
                       />
-                    </label>
-                    <label className="form-group">
-                      Gender:
-                      <select className="form-field">
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                    </label>
-                    <input
-                      className="form-field modal-form-btn"
-                      type="submit"
-                      value="Save"
-                    />
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
