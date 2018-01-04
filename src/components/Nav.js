@@ -7,7 +7,9 @@ class Nav extends Component {
     super(props);
     this.state = {
       showModal: { display: 'none' },
-      zipcode: '90210'
+      zipcode: '90210',
+      weatherDescription: '',
+      clothes: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,12 +26,18 @@ class Nav extends Component {
     alert('A name was submitted: ' + this.state.zipcode);
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/zip=${
+        `http://api.openweathermap.org/data/2.5/weather?zip=${
           this.state.zipcode
         }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
-      .then(function(response) {
-        console.log(response);
+      .then(response => {
+        if (response.data.weather.length < 2) {
+          this.setState({ weatherDescription: 'response.data.weather[0].id' });
+        } else {
+          response.data.weather.forEach(id => {
+            console.log(id.id);
+          });
+        }
       })
       .catch(function(error) {
         console.log(error);
