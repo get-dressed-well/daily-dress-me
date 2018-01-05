@@ -26,7 +26,7 @@ class Nav extends Component {
     super(props);
     this.state = {
       showModal: { display: 'none' },
-      zipcode: '90210',
+      zipcode: '08401',
       weatherDescription: '',
       temperature: '',
       cityName: '',
@@ -183,13 +183,10 @@ class Nav extends Component {
               </div>
             </div>
           </div>
-<<<<<<< HEAD
         </div>
         <div style={{display: "flex", flexFlow: "column", alignItems: "center"}}>
-          <Display />
+          <Display location={this.state.cityName} temperature={this.state.temperature} />
           <OutfitList />
-=======
->>>>>>> 662e2eea95c51c16f0273e1f23b1059ac4f21360
         </div>
       </div>
     );
