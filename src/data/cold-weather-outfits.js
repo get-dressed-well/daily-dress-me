@@ -6,7 +6,7 @@ const woolJacket = {
     "A timeless car coat, beautifully crafted in a luxurious wool blend from Mario Bellucci, one of Italy's finest mills.",
   link:
     'http://bananarepublic.gap.com/browse/product.do?cid=1090112&pcid=1016720&vid=1&pid=795677032',
-  image: './cold-weather/woolCoat.png',
+  image: '../data/cold-weather/woolCoat.png',
   price: 300.0,
   company: 'Banana Republic',
   materials: ['80% virgin wool', '20% nylon'],
@@ -22,7 +22,7 @@ const woolSweater = {
     'A high quality merino wool sweater that is comfortable and wrinkle resistant. It has breathable fiber and is prized for its odor resistance, soft feel, and ability to retain shape over time. It has a rib-knit crew neck and long sleeves with rib-knit cuffs.',
   link:
     'http://bananarepublic.gap.com/browse/product.do?cid=1089972&pcid=28660&vid=1&pid=796480002',
-  image: './cold-weather/dressSweater.png',
+  image: '.../data/cold-weather/dressSweater.png',
   price: 67.99,
   company: 'Banana Republic',
   materials: ['100% extra-fine Merino wool'],
@@ -36,7 +36,7 @@ const dressShirt = {
   description: 'A button down collar shirt made with 100% cotton.',
   link:
     'http://bananarepublic.gap.com/browse/product.do?cid=1076637&pcid=44873&vid=1&pid=176260002',
-  image: './cold-weather/dressShirt.png',
+  image: '../data/cold-weather/dressShirt.png',
   price: 64.5,
   company: 'Banana Republic',
   materials: ['100% cotton'],
@@ -52,7 +52,7 @@ const dressPants = {
     'Rapid movement chins are tailored for performance and engineered with stretch for a comfortable fit that keeps its shape. It also has water and stain resistant properties so you stay looking your best.',
   link:
     'http://bananarepublic.gap.com/browse/product.do?cid=1086241&pcid=35878&vid=1&pid=795219072',
-  image: './cold-weather/dressPants.png',
+  image: '../data/cold-weather/dressPants.png',
   price: 98.0,
   company: 'Banana Republic',
   materials: ['Unknown'],
@@ -68,7 +68,7 @@ const dressShoes = {
     'Fashionable dress boot in ankle silhouette featuring a cap toe with downturned seam.',
   link:
     'https://www.amazon.com/Calvin-Klein-Mens-Darsey-Black/dp/B01AYZRO54/ref=sr_1_47?ie=UTF8&qid=1515090819&sr=8-47&keywords=dress+boots+for+men',
-  image: './cold-weather/dressBoot.png',
+  image: '../data/cold-weather/dressBoot.png',
   price: 70.0,
   company: 'Calvin Klein',
   materials: ['Leather', 'Rubber Sole'],
@@ -83,7 +83,7 @@ const scarf = {
   description: 'Woven Nautica scarf',
   link:
     'https://www.amazon.com/Nautica-Striped-Scarf-Granite-Heather/dp/B01I22ODLY/ref=sr_1_26?s=apparel&ie=UTF8&qid=1515090969&sr=1-26&nodeID=7141123011&psd=1&keywords=mens+scarf&refinements=p_n_feature_eighteen_browse-bin%3A14630392011',
-  image: './cold-weather/scarf.png',
+  image: '../data/cold-weather/scarf.png',
   price: 70.0,
   company: 'Nautica',
   materials: ['60% nylon', '40% Wool'],
@@ -99,7 +99,7 @@ const leatherGloves = {
     'Leather thermal insulated lining touch screen compatible gloves.',
   link:
     'https://www.amazon.com/Leather-Smartphone-Gloves-Screen-Android/dp/B00AAJIUCG/ref=sr_1_11?s=apparel&ie=UTF8&qid=1515098941&sr=1-11&nodeID=7147441011&psd=1&keywords=mens+leather+gloves',
-  image: './cold-weather/leatherGloves.png',
+  image: '../data/cold-weather/leatherGloves.png',
   price: 8.49,
   company: 'Alpine Swiss',
   materials: ['Leather'],
@@ -109,7 +109,6 @@ const leatherGloves = {
 
 const outfit1 = {
   _id: 1,
-<<<<<<< HEAD
   clothes: [
     woolJacket,
     woolSweater,
@@ -121,11 +120,6 @@ const outfit1 = {
   ],
   temp: 'cold',
   condition: 'sunny'
-=======
-  clothes: [woolJacket, woolSweater, dressShirt, dressShoes, dressPants, scarf, leatherGloves],
-  temp: "cold",
-  condition: "sunny",
->>>>>>> 8d42f3bff915f274ef71807db8b7781072c4cf05
 };
 
 const winterJacket = {
@@ -136,7 +130,7 @@ const winterJacket = {
     "For full-coverage during winter's worst, shield yourself in this weatherproof hooded parka that's insulated with responsibly sourced 550-fill goose down insulation for reliable warmth. Includes a lifetime gaurantee.",
   link:
     'https://www.thenorthface.com/shop/mens-jackets-vests-insulated/mens-mcmurdo-parka-iii-nf0a33rf?variationId=21L',
-  image: './cold-weather/parka.png',
+  image: '../data/cold-weather/parka.png',
   price: 330.0,
   company: 'The North Face',
   materials: ['100% windproof fabric', 'goose down', 'nylon', 'polyester'],
@@ -152,7 +146,7 @@ const jeanPants = {
     'Premium denim with stretch. Dark indigo wash with subtle whiskering. Button closure, zip fly.',
   link:
     'http://www.gap.com/browse/product.do?cid=1050839&pcid=6998&vid=1&pid=936268002',
-  image: './cold-weather/jeans.png',
+  image: '../data/cold-weather/jeans.png',
   price: 79.95,
   company: 'Gap',
   materials: ['70% cotton', '28% other', '2% Polyurethane'],
@@ -167,7 +161,7 @@ const henleyShirt = {
   description:
     'Crew neck henley long sleeve shirt featuring four-button placket',
   link: 'https://www.amazon.com/dp/B075FR342Q/ref=sspa_dk_detail_1?psc=1',
-  image: './cold-weather/henley.png',
+  image: '../data/cold-weather/henley.png',
   price: 20.99,
   company: 'Derminpro',
   materials: ['100% cotton'],
@@ -183,7 +177,7 @@ const winterBoots = {
     "Whether you're hiking snowy hills, ice fishing, or manning the lifts, your feet will be safe and warm in these rugged, waterproof winter boots with heavy duty (400g) PrimaLoft(R) insulation and temperature-sensitive soles for superior traction.",
   link:
     'https://www.thenorthface.com/shop/shoes-mens-winter-boots/mens-thermoball-lifty-winter-boots-nf0a331a?variationId=YRA',
-  image: './cold-weather/winterBoot.png',
+  image: '../data/cold-weather/winterBoot.png',
   price: 160.0,
   company: 'The North Face',
   materials: ['leather', 'rubber'],
@@ -199,7 +193,7 @@ const beanie = {
     "Our knit cuff beanie cap is very comfortable and could give you lasting warmth and softness in cold winter. It's ornament of your clothes and reflects the fashionable casual wear style.",
   link:
     'https://www.amazon.com/Vmevo-Cuffed-Beanie-Winter-Unisex/dp/B0761HM9VY/ref=sr_1_5?ie=UTF8&qid=1515094037&sr=8-5&keywords=men%27s+winter+beanie',
-  image: './cold-weather/beanie.png',
+  image: '../data/cold-weather/beanie.png',
   price: 12.99,
   company: 'Vmevo',
   materials: ['leather', 'rubber'],
@@ -215,7 +209,7 @@ const gloves = {
     "Our knit cuff beanie cap is very comfortable and could give you lasting warmth and softness in cold winter. It's ornament of your clothes and reflects the fashionable casual wear style.",
   link:
     'https://www.amazon.com/Vmevo-Cuffed-Beanie-Winter-Unisex/dp/B0761HM9VY/ref=sr_1_5?ie=UTF8&qid=1515094037&sr=8-5&keywords=men%27s+winter+beanie',
-  image: './cold-weather/gloves.png',
+  image: '../data/cold-weather/gloves.png',
   price: 12.99,
   company: 'Vmevo',
   materials: ['leather', 'rubber'],

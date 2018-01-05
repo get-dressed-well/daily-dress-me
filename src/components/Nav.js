@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import dictionaryObj from './dictionary';
 import OutfitList from './outfitList';
+import Display from './Display';
 import images from '../scripts/weatherImgs';
 // import Main from './Main';
 import '../styles/Nav.css';
@@ -152,7 +153,7 @@ class Nav extends Component {
           <button onClick={this.openModel} id="bars-btn">
             <i className="fas fa-bars" />
           </button>
-          {/* <div id="myModal" className="modal" style={this.state.showModal}>
+          <div id="myModal" className="modal" style={this.state.showModal}>
             <div className="outer">
               <div className="middle">
                 <div className="inner">
@@ -188,9 +189,12 @@ class Nav extends Component {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
-        <OutfitList />
+        <div style={{display: "flex", flexFlow: "column", alignItems: "center"}}>
+          <Display />
+          <OutfitList />
+        </div>
       </div>
     );
   }
