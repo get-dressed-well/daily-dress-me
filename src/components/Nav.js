@@ -31,7 +31,9 @@ class Nav extends Component {
       temperature: '',
       cityName: '',
       clothes: [],
-      weatherBackgroundImg: { backgroundImage: `url(${images.clearSky})`}
+      nextDayTemp: '',
+      nextDayWeatherDescription: '',
+      weatherBackgroundImg: { backgroundImage: `url(${images.clearSky})` }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -97,9 +99,11 @@ class Nav extends Component {
         }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
       .then(response => {
+        console.log(response.data);
         this.setState({
           cityName: response.data.name,
-          temperature: Math.round(response.data.main.temp * (9 / 5) - 459.67) + "°"
+          temperature:
+            Math.round(response.data.main.temp * (9 / 5) - 459.67) + '°'
         });
         if (response.data.weather.length < 2) {
           this.setState({
@@ -128,9 +132,7 @@ class Nav extends Component {
   closeModal() {
     this.setState({ showModal: { display: 'none' } });
   }
-  conditionalRender() {
-
-  }
+  conditionalRender() {}
   componentDidMount() {
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = event => {
@@ -139,7 +141,8 @@ class Nav extends Component {
         this.setState({ showModal: { display: 'none' } });
       }
     };
-    if(this.state.temperature === '') {  };
+    if (this.state.temperature === '') {
+    }
   }
 
   render() {
@@ -187,12 +190,24 @@ class Nav extends Component {
             </div>
           </div>
         </div>
-          {this.state.temperature?
-          <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}>
-           <Display temperature={this.state.temperature} location={this.state.cityName}  weatherDescription={this.state.weatherDescription}/>
-           <OutfitList />
-          </div> : <div></div>
-          }
+        {this.state.temperature ? (
+          <div
+            style={{
+              display: 'flex',
+              flexFlow: 'column',
+              alignItems: 'center'
+            }}
+          >
+            <Display
+              temperature={this.state.temperature}
+              location={this.state.cityName}
+              weatherDescription={this.state.weatherDescription}
+            />
+            <OutfitList />
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     );
   }

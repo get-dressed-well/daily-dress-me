@@ -5,13 +5,12 @@ import Outfit from './outfit.js';
 import coldOutfits from '../data/cold-weather-outfits.js';
 
 class OutfitList extends React.Component {
-
   mapOutfitsArray() {
     return coldOutfits.map((outfit, index) => {
       return (
         <div key={index}>
           <p>Outfit {index + 1}</p>
-          <Outfit clothes={outfit.clothes}/>
+          <Outfit clothes={outfit.clothes} />
         </div>
       );
     });
@@ -19,7 +18,7 @@ class OutfitList extends React.Component {
 
   render() {
     return (
-      <div style={{width:"80%", padding: "10px"}}>
+      <div style={{ width: '80%', padding: '10px' }}>
         {this.mapOutfitsArray()}
       </div>
     );
