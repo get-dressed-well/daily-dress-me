@@ -5,6 +5,7 @@ import images from '../scripts/weatherImgs';
 // import Main from './Main';
 import '../styles/Nav.css';
 
+<<<<<<< HEAD
 // const images = [
 //   { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' },
 //   { name: 'few clouds', fileLocation: './weatherPic/few-clouds.jpeg' },
@@ -24,6 +25,22 @@ import '../styles/Nav.css';
 // if (imageIndex !== -1) {
 //   let fileLocation = images.splice(imageIndex.fileLocation, 1); //file location for background
 // }
+=======
+const imagesArray = [
+  { name: 'clear sky', fileLocation: images.clearSky },
+  { name: 'few clouds', fileLocation: images.fewClouds },
+  {
+    name: 'scattered clouds',
+    fileLocation: images.scatteredClouds
+  },
+  { name: 'broken clouds', fileLocation: images.brokenClouds },
+  { name: 'shower rain', fileLocation: images.showerRain },
+  { name: 'rain', fileLocation: images.rain },
+  { name: 'thunderstorm', fileLocation: images.thunderstorm },
+  { name: 'snow', fileLocation: images.snow },
+  { name: 'mist', fileLocation: images.mist }
+];
+>>>>>>> 51fbd456ced4e56f4743dcfcfad97f0cd6619af5
 
 class Nav extends Component {
   constructor(props) {
@@ -33,7 +50,11 @@ class Nav extends Component {
       zipcode: '90210',
       weatherDescription: '',
       clothes: [],
+<<<<<<< HEAD
       weatherBackgroundImg: { backgroundImage: "url("+ images.brokenClouds + ")" }
+=======
+      weatherBackgroundImg: null
+>>>>>>> 51fbd456ced4e56f4743dcfcfad97f0cd6619af5
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,33 +71,47 @@ class Nav extends Component {
      * 5 extreme
      */
     let result = num.toString()[0];
+    console.log(result);
     switch (result) {
       case '2':
       case '3':
       case '5':
-        return '2';
+        return 'rain';
       case '6':
-        return '3';
+        return 'snow';
       case '7':
-        return '4';
+        return 'mist';
       case '8':
-        return '1';
+        return 'clear sky';
       case '9':
-        return '5';
+        return 'extreme';
       default:
-        return '1';
+        return 'clear sky';
     }
     return result;
   };
 
-  getImage = () => {
+  getImage = name => {
     console.log('get image was called');
-    const imageIndex = images.findIndex(
+    console.log(name);
+    let imageIndex = imagesArray.findIndex(
       image => image.name === this.state.weatherDescription
     );
     if (imageIndex !== -1) {
-      let image = images.splice(imageIndex.fileLocation, 1); //file location for background
-      this.setState({ weatherBackgroundImg: image[0].fileLocation });
+      let image = imagesArray.splice(imageIndex.fileLocation, 1); //file location for background
+      image = { backgroundImage: `url(${image[0].fileLocation})` };
+      this.setState({ weatherBackgroundImg: image });
+    } else {
+      name = this.convert(name);
+      console.log(name);
+      this.setState({ weatherDescription: name });
+      let imageIndex = imagesArray.findIndex(image => name === image.name);
+      if (imageIndex !== -1) {
+        let image = imagesArray.splice(imageIndex.fileLocation, 1); //file location for background
+        image = { backgroundImage: `url(${image[0].fileLocation})` };
+        console.log(image);
+        this.setState({ weatherBackgroundImg: image });
+      }
     }
   };
 
@@ -97,13 +132,14 @@ class Nav extends Component {
           this.setState({
             weatherDescription: response.data.weather[0].description
           });
+          this.getImage(response.data.weather[0].id);
           console.log('only one thing ' + response.data.weather[0].id);
         } else {
           this.setState({
             weatherDescription: response.data.weather[1].description
           });
+          this.getImage(response.data.weather[1].id);
         }
-        this.getImage();
       })
 
       .catch(function(error) {
