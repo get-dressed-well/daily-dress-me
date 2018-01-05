@@ -79,7 +79,7 @@ const casualShirt = {
 const casualShoes = {
   _id: 27,
   type: "shoes",
-  name: "Men's Running Shoes"
+  name: "Men's Running Shoes",
   description: "Perfect accord with human body engineering, green, healthy concept design. Selection of good material, breathable, lightweight, comfortable shoes. Fashion unique durable, safe environmental protection material",
   link: "https://www.amazon.com/dp/B075RB3D6J/ref=twister_B075MJ4N14",
   image: "./warm-weather/casualShoe.png",
