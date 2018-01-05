@@ -9,9 +9,9 @@ class OutfitList extends React.Component {
   mapOutfitsArray() {
     return coldOutfits.map((outfit, index) => {
       return (
-        <div>
-          <Outfit key={index} clothes={outfit.clothes}/>
-          <p>Test {index}</p>
+        <div key={index}>
+          <p>Outfit {index}</p>
+          <Outfit clothes={outfit.clothes}/>
         </div>
       );
     });
@@ -19,7 +19,7 @@ class OutfitList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{width:"80%"}}>
         {this.mapOutfitsArray()}
       </div>
     );

@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import dictionaryObj from './dictionary';
+import OutfitList from './outfitList';
 import images from '../scripts/weatherImgs';
+// import Main from './Main';
 import '../styles/Nav.css';
 
 const imagesArray = [
-  { name: 'clear sky', fileLocation: images.clearSky },
-  { name: 'few clouds', fileLocation: images.fewClouds },
+  { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' },
+  { name: 'few clouds', fileLocation: './weatherPic/few-clouds.jpeg' },
   {
     name: 'scattered clouds',
-    fileLocation: images.scatteredClouds
+    fileLocation: './weatherPic/scattered-clouds.jpeg'
   },
-  { name: 'broken clouds', fileLocation: images.brokenClouds },
-  { name: 'shower rain', fileLocation: images.showerRain },
-  { name: 'rain', fileLocation: images.rain },
-  { name: 'thunderstorm', fileLocation: images.thunderstorm },
-  { name: 'snow', fileLocation: images.snow },
-  { name: 'mist', fileLocation: images.mist }
+  { name: 'broken clouds', fileLocation: './weatherPic/broken-clouds.jpeg' },
+  { name: 'shower rain', fileLocation: './weatherPic/shower-rain.jpeg' },
+  { name: 'rain', fileLocation: './weatherPic/rain.jpeg' },
+  { name: 'thunderstorm', fileLocation: './weatherPic/thunderstorm.jpeg' },
+  { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
+  { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
 ];
+// console.log(images);
+// const imageIndex = images.findIndex(image => image.name === weatherDescription);
+// if (imageIndex !== -1) {
+//   let fileLocation = images.splice(imageIndex.fileLocation, 1); //file location for background
+// }
 
 class Nav extends Component {
   constructor(props) {
@@ -27,7 +34,7 @@ class Nav extends Component {
       zipcode: '90210',
       weatherDescription: '',
       clothes: [],
-      weatherBackgroundImg: null
+      weatherBackgroundImg: { backgroundImage: "url("+ images.brokenClouds + ")" }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -145,7 +152,7 @@ class Nav extends Component {
           <button onClick={this.openModel} id="bars-btn">
             <i className="fas fa-bars" />
           </button>
-          <div id="myModal" className="modal" style={this.state.showModal}>
+          {/* <div id="myModal" className="modal" style={this.state.showModal}>
             <div className="outer">
               <div className="middle">
                 <div className="inner">
@@ -181,8 +188,9 @@ class Nav extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
+        <OutfitList />
       </div>
     );
   }

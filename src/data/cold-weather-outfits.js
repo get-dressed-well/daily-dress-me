@@ -109,6 +109,7 @@ const leatherGloves = {
 
 const outfit1 = {
   _id: 1,
+<<<<<<< HEAD
   clothes: [
     woolJacket,
     woolSweater,
@@ -120,6 +121,11 @@ const outfit1 = {
   ],
   temp: 'cold',
   condition: 'sunny'
+=======
+  clothes: [woolJacket, woolSweater, dressShirt, dressShoes, dressPants, scarf, leatherGloves],
+  temp: "cold",
+  condition: "sunny",
+>>>>>>> 8d42f3bff915f274ef71807db8b7781072c4cf05
 };
 
 const winterJacket = {
