@@ -10,7 +10,7 @@ class OutfitList extends React.Component {
     return coldOutfits.map((outfit, index) => {
       return (
         <div key={index}>
-          <p>Outfit {index}</p>
+          <p>Outfit {index + 1}</p>
           <Outfit clothes={outfit.clothes}/>
         </div>
       );

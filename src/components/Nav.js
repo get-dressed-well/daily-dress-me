@@ -31,12 +31,12 @@ class Nav extends Component {
       temperature: '',
       cityName: '',
       clothes: [],
-      weatherBackgroundImg: {}
+      weatherBackgroundImg: { backgroundImage: `url(${images.clearSky})`}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.openModel = this.openModel.bind(this);
-    this.closeModel = this.closeModel.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   convert = num => {
@@ -99,7 +99,7 @@ class Nav extends Component {
       .then(response => {
         this.setState({
           cityName: response.data.name,
-          temperature: Math.round(response.data.main.temp * (9 / 5) - 459.67)
+          temperature: Math.round(response.data.main.temp * (9 / 5) - 459.67) + "°"
         });
         if (response.data.weather.length < 2) {
           this.setState({
@@ -112,7 +112,7 @@ class Nav extends Component {
           });
           this.getImage(response.data.weather[1].id);
         }
-        this.closeModel();
+        this.closeModal();
       })
 
       .catch(function(error) {
@@ -121,14 +121,16 @@ class Nav extends Component {
     event.preventDefault();
   }
 
-  openModel() {
+  openModal() {
     this.setState({ showModal: { display: 'block' } });
   }
 
-  closeModel() {
+  closeModal() {
     this.setState({ showModal: { display: 'none' } });
   }
+  conditionalRender() {
 
+  }
   componentDidMount() {
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = event => {
@@ -137,13 +139,14 @@ class Nav extends Component {
         this.setState({ showModal: { display: 'none' } });
       }
     };
+    if(this.state.temperature === '') {  };
   }
 
   render() {
     return (
       <div className="wrapper" style={this.state.weatherBackgroundImg}>
         <div>
-          <button onClick={this.openModel} id="bars-btn">
+          <button onClick={this.openModal} id="bars-btn">
             <i className="fas fa-bars" />
           </button>
           <div id="myModal" className="modal" style={this.state.showModal}>
@@ -152,7 +155,7 @@ class Nav extends Component {
                 <div className="inner">
                   <div className="modal-content">
                     <h3>Choose location</h3>
-                    <span className="close" onClick={this.closeModel}>
+                    <span className="close" onClick={this.closeModal}>
                       &times;
                     </span>
                     <form onSubmit={this.handleSubmit}>
@@ -184,12 +187,12 @@ class Nav extends Component {
             </div>
           </div>
         </div>
-        <div
-          style={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}
-        >
-          <Display />
-          <OutfitList />
-        </div>
+          {this.state.temperature?
+          <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}>
+           <Display temperature={this.state.temperature} location={this.state.cityName}  weatherDescription={this.state.weatherDescription}/>
+           <OutfitList />
+          </div> : <div></div>
+          }
       </div>
     );
   }
