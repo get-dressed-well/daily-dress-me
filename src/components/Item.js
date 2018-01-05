@@ -2,7 +2,6 @@ import React from 'react';
 
 class Item extends React.Component {
   render() {
-    console.log(this.props.cItem.image)
     return (
       <div style={{display: "flex", padding: "10px", height: "200px", borderRadius: "10px", background: "#ffffff", boxShadow: "2px 3px #888888", marginBottom: "10px"}}>
         <img src={"https://github.com/lightofdavinci/daily-dress-me/blob/master/src/data/cold-weather/beanie.png?raw=true"} />

@@ -16,16 +16,14 @@ class Display extends React.Component {
           background: 'rgba(255, 255, 255, 0.6)'
         }}
       >
-        {/* <p>{this.props.temp}</p>
-        <p>{this.props.location}</p> */}
         <p style={{ color: '#2a68cc', fontFamily: 'sans-serif' }}>
           Example: Icon
         </p>
         <p style={{ color: '#2a68cc', fontFamily: 'sans-serif' }}>
-          Example: 32 Degrees F
+          Example: {this.props.temperature} Degrees F
         </p>
         <p style={{ color: '#2a68cc', fontFamily: 'sans-serif' }}>
-          Example: Location
+          Example: {this.props.location}
         </p>
       </div>
     );
