@@ -10,7 +10,7 @@ class OutfitList extends React.Component {
     let temp = parseInt(this.props.temperature,10);
     let outfitList;
 
-    if(temp > 60) {
+    if(temp > 66) {
       outfitList = warmWeatherOutfit;
     } else {
       outfitList = coldOutfits;
