@@ -184,15 +184,10 @@ class Nav extends Component {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
         <div
           style={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}
         >
           <Display />
-=======
-        <div style={{display: "flex", flexFlow: "column", alignItems: "center"}}>
-          <Display location={this.state.cityName} temperature={this.state.temperature} />
->>>>>>> 9f83315e636071d8c2344c689e2d95cfc2a1e487
           <OutfitList />
         </div>
       </div>
