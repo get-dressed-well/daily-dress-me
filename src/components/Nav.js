@@ -31,8 +31,6 @@ class Nav extends Component {
       temperature: '',
       cityName: '',
       clothes: [],
-      nextDayTemp: '',
-      nextDayWeatherDescription: '',
       weatherBackgroundImg: { backgroundImage: `url(${images.clearSky})` }
     };
     this.handleChange = this.handleChange.bind(this);
@@ -91,7 +89,6 @@ class Nav extends Component {
 
   handleSubmit(event) {
     this.setState({ weatherDescription: '' });
-    alert('A name was submitted: ' + this.state.zipcode);
     axios
       .get(
         `http://api.openweathermap.org/data/2.5/weather?zip=${
@@ -99,7 +96,6 @@ class Nav extends Component {
         }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
       .then(response => {
-        console.log(response.data);
         this.setState({
           cityName: response.data.name,
           temperature:
@@ -134,9 +130,9 @@ class Nav extends Component {
   }
   conditionalRender() {}
   componentDidMount() {
+    this.openModal();
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = event => {
-      console.log(event.target);
       if (event.target.className === 'middle') {
         this.setState({ showModal: { display: 'none' } });
       }
