@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import dictionaryObj from './dictionary';
-import test from '../weatherPics/clear-sky.jpeg';
+import images from '../scripts/weatherImgs';
 import '../styles/Nav.css';
 
 let body = document.getElementsByTagName('body')[0];
 
-const images = [
-  { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' },
-  { name: 'few clouds', fileLocation: './weatherPic/few-clouds.jpeg' },
-  {
-    name: 'scattered clouds',
-    fileLocation: './weatherPic/scattered-clouds.jpeg'
-  },
-  { name: 'broken clouds', fileLocation: './weatherPic/broken-clouds.jpeg' },
-  { name: 'shower rain', fileLocation: './weatherPic/shower-rain.jpeg' },
-  { name: 'rain', fileLocation: './weatherPic/rain.jpeg' },
-  { name: 'thunderstorm', fileLocation: './weatherPic/thunderstorm.jpeg' },
-  { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
-  { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
-];
+// const images = [
+//   { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' },
+//   { name: 'few clouds', fileLocation: './weatherPic/few-clouds.jpeg' },
+//   {
+//     name: 'scattered clouds',
+//     fileLocation: './weatherPic/scattered-clouds.jpeg'
+//   },
+//   { name: 'broken clouds', fileLocation: './weatherPic/broken-clouds.jpeg' },
+//   { name: 'shower rain', fileLocation: './weatherPic/shower-rain.jpeg' },
+//   { name: 'rain', fileLocation: './weatherPic/rain.jpeg' },
+//   { name: 'thunderstorm', fileLocation: './weatherPic/thunderstorm.jpeg' },
+//   { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
+//   { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
+// ];
 // console.log(images);
 // const imageIndex = images.findIndex(image => image.name === weatherDescription);
 // if (imageIndex !== -1) {
@@ -34,9 +34,8 @@ class Nav extends Component {
       zipcode: '90210',
       weatherDescription: '',
       clothes: [],
-      weatherBackgroundImg: { backgroundImage: "url("+ test +")" }
+      weatherBackgroundImg: { backgroundImage: "url("+ images.clearSky + ")" }
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.openModel = this.openModel.bind(this);
