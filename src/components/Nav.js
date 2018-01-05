@@ -6,7 +6,6 @@ import images from '../scripts/weatherImgs';
 // import Main from './Main';
 import '../styles/Nav.css';
 
-
 const imagesArray = [
   { name: 'clear sky', fileLocation: images.clearSky },
   { name: 'few clouds', fileLocation: images.fewClouds },
@@ -97,6 +96,7 @@ class Nav extends Component {
         }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
       .then(response => {
+        console.log(response.data);
         this.setState({
           cityName: response.data.name,
           temperature:
@@ -200,9 +200,7 @@ class Nav extends Component {
               location={this.state.cityName}
               weatherDescription={this.state.weatherDescription}
             />
-            <OutfitList
-              temperature={this.state.temperature}
-            />
+            <OutfitList />
           </div>
         ) : (
           <div />
