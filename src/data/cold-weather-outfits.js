@@ -96,7 +96,7 @@ const leatherGloves = {
 }
 
 const outfit1 = {
-  _id: 1
+  _id: 1,
   clothes: [woolJacket, woolSweater, dressShirt, dressShoes, dressPants, scarf, leatherGloves],
   temp: "cold",
   condition: "sunny",

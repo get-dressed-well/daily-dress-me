@@ -1,15 +1,15 @@
 import React from 'react';
 
-import cItem from './cItem.js';
+import Item from './Item.js';
 
 class Outfit extends React.Component {
 
   mapClothesArray() {
     return this.props.clothes.map((item, index) => {
       return (
-        <div>
-          <cItem cItem={item}/>
-          <p>Test {index}</p>
+        <div key={index}>
+          <Item cItem={item}/>
+          <p>Clothing item {index}</p>
         </div>
       );
     });
@@ -17,7 +17,7 @@ class Outfit extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{border: "1px solid black"}}>
         {this.mapClothesArray()}
       </div>
     );

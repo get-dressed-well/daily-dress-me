@@ -1,6 +1,6 @@
 import React from 'react';
 
-class cItem extends React.Component {
+class Item extends React.Component {
   render() {
     return (
       <div style={{display: "flex"}}>
@@ -16,6 +16,8 @@ class cItem extends React.Component {
     );
   }
 }
+
+export default Item;
 
 const woolJacket = {
   _id: 1,
