@@ -9,7 +9,6 @@ class Outfit extends React.Component {
       return (
         <div key={index}>
           <Item cItem={item}/>
-          <p>Clothing item {index}</p>
         </div>
       );
     });
@@ -17,7 +16,7 @@ class Outfit extends React.Component {
 
   render() {
     return (
-      <div style={{border: "1px solid black"}}>
+      <div style={{border: "1px solid black", padding: "10px", backgroundColor: "rgba(255, 255, 255, 0.6)", borderRadius: "10px"}}>
         {this.mapClothesArray()}
       </div>
     );
