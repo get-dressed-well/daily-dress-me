@@ -44,7 +44,6 @@ class Nav extends Component {
      * 5 extreme
      */
     let result = num.toString()[0];
-    console.log(result);
     switch (result) {
       case '2':
       case '3':
@@ -65,24 +64,24 @@ class Nav extends Component {
   };
 
   getImage = name => {
-    console.log('get image was called');
-    console.log(name);
-    let imageIndex = imagesArray.findIndex(
-      image => image.name === this.state.weatherDescription
-    );
+    let imageIndex = imagesArray.indexOf(name);
     if (imageIndex !== -1) {
-      let image = imagesArray.splice(imageIndex.fileLocation, 1); //file location for background
-      image = { backgroundImage: `url(${image[0].fileLocation})` };
+      let image = imagesArray.find(image => {
+        return image.name === this.state.weatherDescription;
+      }); //file location for background
+      image = { backgroundImage: `url(${image.fileLocation})` };
       this.setState({ weatherBackgroundImg: image });
     } else {
       name = this.convert(name);
-      console.log(name);
       this.setState({ weatherDescription: name });
-      let imageIndex = imagesArray.findIndex(image => name === image.name);
+      let imageIndex = imagesArray.findIndex(
+        image => image.name === this.state.weatherDescription
+      );
       if (imageIndex !== -1) {
-        let image = imagesArray.splice(imageIndex.fileLocation, 1); //file location for background
-        image = { backgroundImage: `url(${image[0].fileLocation})` };
-        console.log(image);
+        let image = imagesArray.find(image => {
+          return image.name === this.state.weatherDescription;
+        }); //file location for background
+        image = { backgroundImage: `url(${image.fileLocation})` };
         this.setState({ weatherBackgroundImg: image });
       }
     }
@@ -93,6 +92,7 @@ class Nav extends Component {
   }
 
   handleSubmit(event) {
+    this.setState({ weatherDescription: '' });
     alert('A name was submitted: ' + this.state.zipcode);
     axios
       .get(
@@ -106,7 +106,6 @@ class Nav extends Component {
             weatherDescription: response.data.weather[0].description
           });
           this.getImage(response.data.weather[0].id);
-          console.log('only one thing ' + response.data.weather[0].id);
         } else {
           this.setState({
             weatherDescription: response.data.weather[1].description
