@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import dictionaryObj from './dictionary';
-import test from '../weatherPics/clear-sky.jpeg';
+import OutfitList from './outfitList';
+import Display from './Display';
+import images from '../scripts/weatherImgs';
+// import Main from './Main';
 import '../styles/Nav.css';
 
-let body = document.getElementsByTagName('body')[0];
-
-const images = [
-  { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' },
-  { name: 'few clouds', fileLocation: './weatherPic/few-clouds.jpeg' },
+const imagesArray = [
+  { name: 'clear sky', fileLocation: images.clearSky },
+  { name: 'few clouds', fileLocation: images.fewClouds },
   {
     name: 'scattered clouds',
-    fileLocation: './weatherPic/scattered-clouds.jpeg'
+    fileLocation: images.scatteredClouds
   },
-  { name: 'broken clouds', fileLocation: './weatherPic/broken-clouds.jpeg' },
-  { name: 'shower rain', fileLocation: './weatherPic/shower-rain.jpeg' },
-  { name: 'rain', fileLocation: './weatherPic/rain.jpeg' },
-  { name: 'thunderstorm', fileLocation: './weatherPic/thunderstorm.jpeg' },
-  { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
-  { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
+  { name: 'broken clouds', fileLocation: images.brokenClouds },
+  { name: 'shower rain', fileLocation: images.showerRain },
+  { name: 'rain', fileLocation: images.rain },
+  { name: 'thunderstorm', fileLocation: images.thunderstorm },
+  { name: 'snow', fileLocation: images.snow },
+  { name: 'mist', fileLocation: images.mist }
 ];
 
 class Nav extends Component {
@@ -26,54 +26,60 @@ class Nav extends Component {
     super(props);
     this.state = {
       showModal: { display: 'none' },
-      zipcode: '90210',
+      zipcode: '08401',
       weatherDescription: '',
+      temperature: '',
+      cityName: '',
       clothes: [],
-      weatherBackgroundImg: ''
+      weatherBackgroundImg: { backgroundImage: `url(${images.clearSky})` }
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.openModel = this.openModel.bind(this);
-    this.closeModel = this.closeModel.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   convert = num => {
-    /**
-     * 1 sunny
-     * 2 rainy
-     * 3 snowy
-     * 4 foggy
-     * 5 extreme
-     */
     let result = num.toString()[0];
     switch (result) {
       case '2':
       case '3':
       case '5':
-        return '2';
+        return 'rain';
       case '6':
-        return '3';
+        return 'snow';
       case '7':
-        return '4';
+        return 'mist';
       case '8':
-        return '1';
+        return 'clear sky';
       case '9':
-        return '5';
+        return 'extreme';
       default:
-        return '1';
+        return 'clear sky';
     }
-    return result;
   };
 
-  getImage = () => {
-    console.log('get image was called');
-    const imageIndex = images.findIndex(
-      image => image.name === this.state.weatherDescription
-    );
+  getImage = name => {
+    let imageIndex = imagesArray.indexOf(name);
     if (imageIndex !== -1) {
-      let image = images.splice(imageIndex.fileLocation, 1); //file location for background
-      this.setState({ weatherBackgroundImg: image[0].fileLocation });
+      let image = imagesArray.find(image => {
+        return image.name === this.state.weatherDescription;
+      }); //file location for background
+      image = { backgroundImage: `url(${image.fileLocation})` };
+      this.setState({ weatherBackgroundImg: image });
+    } else {
+      name = this.convert(name);
+      this.setState({ weatherDescription: name });
+      let imageIndex = imagesArray.findIndex(
+        image => image.name === this.state.weatherDescription
+      );
+      if (imageIndex !== -1) {
+        let image = imagesArray.find(image => {
+          return image.name === this.state.weatherDescription;
+        }); //file location for background
+        image = { backgroundImage: `url(${image.fileLocation})` };
+        this.setState({ weatherBackgroundImg: image });
+      }
     }
   };
 
@@ -82,7 +88,7 @@ class Nav extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.zipcode);
+    this.setState({ weatherDescription: '' });
     axios
       .get(
         `http://api.openweathermap.org/data/2.5/weather?zip=${
@@ -90,17 +96,23 @@ class Nav extends Component {
         }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
       .then(response => {
+        this.setState({
+          cityName: response.data.name,
+          temperature:
+            Math.round(response.data.main.temp * (9 / 5) - 459.67) + '°'
+        });
         if (response.data.weather.length < 2) {
           this.setState({
             weatherDescription: response.data.weather[0].description
           });
-          console.log('only one thing ' + response.data.weather[0].id);
+          this.getImage(response.data.weather[0].id);
         } else {
           this.setState({
             weatherDescription: response.data.weather[1].description
           });
+          this.getImage(response.data.weather[1].id);
         }
-        this.getImage();
+        this.closeModal();
       })
 
       .catch(function(error) {
@@ -109,29 +121,31 @@ class Nav extends Component {
     event.preventDefault();
   }
 
-  openModel() {
+  openModal() {
     this.setState({ showModal: { display: 'block' } });
   }
 
-  closeModel() {
+  closeModal() {
     this.setState({ showModal: { display: 'none' } });
   }
-
+  conditionalRender() {}
   componentDidMount() {
+    this.openModal();
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = event => {
-      console.log(event.target);
       if (event.target.className === 'middle') {
         this.setState({ showModal: { display: 'none' } });
       }
     };
+    if (this.state.temperature === '') {
+    }
   }
 
   render() {
     return (
       <div className="wrapper" style={this.state.weatherBackgroundImg}>
         <div>
-          <button onClick={this.openModel} id="bars-btn">
+          <button onClick={this.openModal} id="bars-btn">
             <i className="fas fa-bars" />
           </button>
           <div id="myModal" className="modal" style={this.state.showModal}>
@@ -140,7 +154,7 @@ class Nav extends Component {
                 <div className="inner">
                   <div className="modal-content">
                     <h3>Choose location</h3>
-                    <span className="close" onClick={this.closeModel}>
+                    <span className="close" onClick={this.closeModal}>
                       &times;
                     </span>
                     <form onSubmit={this.handleSubmit}>
@@ -172,6 +186,24 @@ class Nav extends Component {
             </div>
           </div>
         </div>
+        {this.state.temperature ? (
+          <div
+            style={{
+              display: 'flex',
+              flexFlow: 'column',
+              alignItems: 'center'
+            }}
+          >
+            <Display
+              temperature={this.state.temperature}
+              location={this.state.cityName}
+              weatherDescription={this.state.weatherDescription}
+            />
+            <OutfitList />
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     );
   }
