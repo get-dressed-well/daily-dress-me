@@ -19,7 +19,7 @@ class OutfitList extends React.Component {
 
   render() {
     return (
-      <div style={{width:"80%"}}>
+      <div style={{width:"80%", padding: "10px"}}>
         {this.mapOutfitsArray()}
       </div>
     );
