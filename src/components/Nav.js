@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import dictionaryObj from './dictionary';
 import OutfitList from './outfitList';
 import Display from './Display';
 import images from '../scripts/weatherImgs';
@@ -8,24 +7,19 @@ import images from '../scripts/weatherImgs';
 import '../styles/Nav.css';
 
 const imagesArray = [
-  { name: 'clear sky', fileLocation: './weatherPic/clear-sky.jpeg' },
-  { name: 'few clouds', fileLocation: './weatherPic/few-clouds.jpeg' },
+  { name: 'clear sky', fileLocation: images.clearSky },
+  { name: 'few clouds', fileLocation: images.fewClouds },
   {
     name: 'scattered clouds',
-    fileLocation: './weatherPic/scattered-clouds.jpeg'
+    fileLocation: images.scatteredClouds
   },
-  { name: 'broken clouds', fileLocation: './weatherPic/broken-clouds.jpeg' },
-  { name: 'shower rain', fileLocation: './weatherPic/shower-rain.jpeg' },
-  { name: 'rain', fileLocation: './weatherPic/rain.jpeg' },
-  { name: 'thunderstorm', fileLocation: './weatherPic/thunderstorm.jpeg' },
-  { name: 'snow', fileLocation: './weatherPic/snow.jpeg' },
-  { name: 'mist', fileLocation: './weatherPic/mist.jpeg' }
+  { name: 'broken clouds', fileLocation: images.brokenClouds },
+  { name: 'shower rain', fileLocation: images.showerRain },
+  { name: 'rain', fileLocation: images.rain },
+  { name: 'thunderstorm', fileLocation: images.thunderstorm },
+  { name: 'snow', fileLocation: images.snow },
+  { name: 'mist', fileLocation: images.mist }
 ];
-// console.log(images);
-// const imageIndex = images.findIndex(image => image.name === weatherDescription);
-// if (imageIndex !== -1) {
-//   let fileLocation = images.splice(imageIndex.fileLocation, 1); //file location for background
-// }
 
 class Nav extends Component {
   constructor(props) {
@@ -34,8 +28,10 @@ class Nav extends Component {
       showModal: { display: 'none' },
       zipcode: '90210',
       weatherDescription: '',
+      temperature: '',
+      cityName: '',
       clothes: [],
-      weatherBackgroundImg: { backgroundImage: "url("+ images.brokenClouds + ")" }
+      weatherBackgroundImg: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,13 +40,6 @@ class Nav extends Component {
   }
 
   convert = num => {
-    /**
-     * 1 sunny
-     * 2 rainy
-     * 3 snowy
-     * 4 foggy
-     * 5 extreme
-     */
     let result = num.toString()[0];
     switch (result) {
       case '2':
@@ -68,7 +57,6 @@ class Nav extends Component {
       default:
         return 'clear sky';
     }
-    return result;
   };
 
   getImage = name => {
@@ -109,6 +97,10 @@ class Nav extends Component {
         }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
       .then(response => {
+        this.setState({
+          cityName: response.data.name,
+          temperature: Math.round(response.data.main.temp * (9 / 5) - 459.67)
+        });
         if (response.data.weather.length < 2) {
           this.setState({
             weatherDescription: response.data.weather[0].description
@@ -120,6 +112,7 @@ class Nav extends Component {
           });
           this.getImage(response.data.weather[1].id);
         }
+        this.closeModel();
       })
 
       .catch(function(error) {
@@ -190,10 +183,13 @@ class Nav extends Component {
               </div>
             </div>
           </div>
+<<<<<<< HEAD
         </div>
         <div style={{display: "flex", flexFlow: "column", alignItems: "center"}}>
           <Display />
           <OutfitList />
+=======
+>>>>>>> 662e2eea95c51c16f0273e1f23b1059ac4f21360
         </div>
       </div>
     );
