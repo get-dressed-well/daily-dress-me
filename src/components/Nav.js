@@ -6,6 +6,7 @@ import images from '../scripts/weatherImgs';
 // import Main from './Main';
 import '../styles/Nav.css';
 
+
 const imagesArray = [
   { name: 'clear sky', fileLocation: images.clearSky },
   { name: 'few clouds', fileLocation: images.fewClouds },
@@ -31,7 +32,7 @@ class Nav extends Component {
       temperature: '',
       cityName: '',
       clothes: [],
-      weatherBackgroundImg: { backgroundImage: `url(${images.clearSky})`}
+      weatherBackgroundImg: { backgroundImage: `url(${images.clearSky})` }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -89,7 +90,6 @@ class Nav extends Component {
 
   handleSubmit(event) {
     this.setState({ weatherDescription: '' });
-    alert('A name was submitted: ' + this.state.zipcode);
     axios
       .get(
         `http://api.openweathermap.org/data/2.5/weather?zip=${
@@ -99,7 +99,8 @@ class Nav extends Component {
       .then(response => {
         this.setState({
           cityName: response.data.name,
-          temperature: Math.round(response.data.main.temp * (9 / 5) - 459.67) + "°"
+          temperature:
+            Math.round(response.data.main.temp * (9 / 5) - 459.67) + '°'
         });
         if (response.data.weather.length < 2) {
           this.setState({
@@ -128,18 +129,17 @@ class Nav extends Component {
   closeModal() {
     this.setState({ showModal: { display: 'none' } });
   }
-  conditionalRender() {
-
-  }
+  conditionalRender() {}
   componentDidMount() {
+    this.openModal();
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = event => {
-      console.log(event.target);
       if (event.target.className === 'middle') {
         this.setState({ showModal: { display: 'none' } });
       }
     };
-    if(this.state.temperature === '') {  };
+    if (this.state.temperature === '') {
+    }
   }
 
   render() {
@@ -187,12 +187,26 @@ class Nav extends Component {
             </div>
           </div>
         </div>
-          {this.state.temperature?
-          <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}>
-           <Display temperature={this.state.temperature} location={this.state.cityName}  weatherDescription={this.state.weatherDescription}/>
-           <OutfitList />
-          </div> : <div></div>
-          }
+        {this.state.temperature ? (
+          <div
+            style={{
+              display: 'flex',
+              flexFlow: 'column',
+              alignItems: 'center'
+            }}
+          >
+            <Display
+              temperature={this.state.temperature}
+              location={this.state.cityName}
+              weatherDescription={this.state.weatherDescription}
+            />
+            <OutfitList
+              temperature={this.state.temperature}
+            />
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     );
   }
