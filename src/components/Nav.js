@@ -200,7 +200,7 @@ class Nav extends Component {
               location={this.state.cityName}
               weatherDescription={this.state.weatherDescription}
             />
-            <OutfitList />
+            <OutfitList temperature={this.state.temperature} />
           </div>
         ) : (
           <div />
