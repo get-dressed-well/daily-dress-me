@@ -7,10 +7,17 @@ import warmWeatherOutfit from '../data/warm-weather-outfits.js';
 
 class OutfitList extends React.Component {
   mapOutfitsArray() {
+<<<<<<< HEAD
     let temp = parseInt(this.props.temperature,10);
     let outfitList;
 
     if(temp > 66) {
+=======
+    let temp = parseInt(this.props.temperature, 10);
+    let outfitList;
+
+    if (temp > 66) {
+>>>>>>> adf297c4ece9859605db60f41e081a56c2a746ae
       outfitList = warmWeatherOutfit;
     } else {
       outfitList = coldOutfits;
@@ -19,7 +26,11 @@ class OutfitList extends React.Component {
     return outfitList.map((outfit, index) => {
       return (
         <div key={index}>
+<<<<<<< HEAD
           <p>Cold Weather Style {index + 1} Outfit</p>
+=======
+          <p>Outfit Suggestion {index + 1}</p>
+>>>>>>> adf297c4ece9859605db60f41e081a56c2a746ae
           <Outfit clothes={outfit.clothes} />
         </div>
       );

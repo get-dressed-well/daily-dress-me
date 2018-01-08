@@ -97,6 +97,7 @@ class Nav extends Component {
         }&APPID=dd0500a24d177cd2e0ee784ff1a34a81`
       )
       .then(response => {
+        console.log(response.data);
         this.setState({
           cityName: response.data.name,
           temperature:
@@ -200,9 +201,13 @@ class Nav extends Component {
               location={this.state.cityName}
               weatherDescription={this.state.weatherDescription}
             />
+<<<<<<< HEAD
             <OutfitList
               temperature={this.state.temperature}
             />
+=======
+            <OutfitList temperature={this.state.temperature} />
+>>>>>>> adf297c4ece9859605db60f41e081a56c2a746ae
           </div>
         ) : (
           <div />
